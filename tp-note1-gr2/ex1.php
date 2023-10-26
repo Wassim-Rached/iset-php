@@ -12,12 +12,79 @@
 		td,th{
 			padding: 10px;
 		}
+		
 	</style>
 	<?php
 		$date = $_POST['date'];
 		$nom = $_POST['nom'];
+
+		$day;
+		$month;
+		$year;
 	
-		$valid = strtotime($date);
+		function validateDate($some_date) {
+			$date_parts = explode('-', $some_date);
+		
+			if (count($date_parts) !== 3) {
+				return false;
+			}
+		
+			$day = intval($date_parts[0]);
+			$month = intval($date_parts[1]);
+			$year = intval($date_parts[2]);
+		
+			if ($year < 1000 || $year > 9999 || $month < 1 || $month > 12 || $day < 1) {
+				return false;
+			}
+		
+			switch ($month) {
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:
+					$max_days = 31;
+					break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					$max_days = 30;
+					break;
+				case 2:
+					if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
+						$max_days = 29;
+					} else {
+						$max_days = 28;
+					}
+					break;
+				default:
+					return false;
+			}
+		
+			if ($day > $max_days) {
+				return false;
+			}
+			
+			$date = sprintf("%02d-%02d-%04d", $day, $month, $year);
+			
+			return $date;
+		}
+
+		$valid = validateDate($date);
+
+		$date_parts = explode('-', $valid);
+		
+		if($valid){
+			global $day,$month,$year;
+
+			$day = intval($date_parts[0]);
+			$month = intval($date_parts[1]);
+			$year = intval($date_parts[2]);
+
+		}
 
 	?>
 </head>
@@ -47,9 +114,9 @@
 				<tbody>
 					<tr>";
 					echo "<td>" . $nom . "</td>";
-					echo "<td>" . date('d', $valid) . "</td>";
-					echo "<td>" . date('m', $valid) . "</td>";
-					echo "<td>" . date('Y', $valid) . "</td>";
+					echo "<td>" . $day . "</td>";
+					echo "<td>" . $month . "</td>";
+					echo "<td>" . $year . "</td>";
 					echo "</tr>
 				</tbody>
 				</table>";
