@@ -4,15 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Liste Livres</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style.css">
 	<?php
-		include('connection.php');
+		include('../connection.php');
 
 		$sql = "SELECT * FROM Livres";
+
 		$req = $cnx->query($sql);
 	?>
 </head>
 <body>
+	<div class="container">
+		<h1>Liste Livres</h1>
 	<table>
 		<thead>
 			<tr>
@@ -26,6 +29,7 @@
 		<tbody>
 			<?php
 				while ($row = $req->fetch()) {
+					
 					echo "<tr>";
 					echo "<td>".$row['Code_i']."</td>";
 					echo "<td>".$row['titre']."</td>";
@@ -37,7 +41,8 @@
 			?>
 		</tbody>
 	</table>
+	</div>
 
-	<?php $conn->close() ?>	
+	<script src='../index.js'></script>	
 </body>
 </html>
