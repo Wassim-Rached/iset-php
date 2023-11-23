@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Liste Livres</title>
-	<link rel="stylesheet" href="style.css">
+	<title>Liste Editeurs</title>
+	<link rel="stylesheet" href="../style.css">
 	<?php
-		include('connection.php');
+		include('../connection.php');
 
 		$sql = "SELECT * FROM Editeurs";
 		$req = $cnx->query($sql);
@@ -14,6 +14,7 @@
 	?>
 </head>
 <body>
+	<div class="container">
 	<table>
 		<thead>
 			<tr>
@@ -38,8 +39,8 @@
 			?>
 		</tbody>
 	</table>
-
-	<?php $conn->close() ?>	
+	</div>	
 	<script src="../index.js"></script>
+	<?php $conn->close() ?>	
 </body>
 </html>
