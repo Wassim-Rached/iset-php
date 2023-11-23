@@ -11,10 +11,13 @@
     <h1>Livres</h1>
       <ul>
         <li>
-          <a href="Editeurs/liste_editeur.php">Liste</a>
+          <a href="Livres/liste_livre.php">Liste</a>
         </li>
         <li>
-          <a href="Editeurs/ajout_editeur.php">Ajout</a>
+          <a href="Livres/ajout_livre.php">Ajout</a>
+        </li>
+        <li>
+          <a href="Livres/supprimer_livre.php">Supprimer</a>
         </li>
       </ul>
     </div>
