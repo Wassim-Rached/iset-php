@@ -3,7 +3,7 @@ version: "3"
 services:
   db:
     image: mysql:latest
-    container_name: db
+    container_name: db-iset
     environment:
       MYSQL_ROOT_PASSWORD: my_secret_password
       MYSQL_DATABASE: app_db
@@ -15,7 +15,7 @@ services:
       - dbdata:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: pma
+    container_name: pma-iset
     links:
       - db
     environment:
